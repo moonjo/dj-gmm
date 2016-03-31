@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block main %}
+<section>
+    <h1>Actors</h1>
+    <table class="table table-responsive table-striped">
+        <tr><th>Name</th><th>Rating</th><th>Year</th></tr>
+        {% for actor in actors %}
+        <tr>
+            <td>{{ actor.first_name }} {{ actor.last_name }}</td>
+            <td>{{ actor.alias}}</td>
+            <td>{{ actor.rating }}</td>
+        </tr>
+        {% empty %}
+        <tr>No actors found</tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}

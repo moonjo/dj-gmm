@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block main %}
+<section>
+    <h1>Ratings</h1>
+    <table class="table table-responsive table-striped">
+        <tr><th>Rating</th><th>Name</th><th>Year</th></tr>
+        {% for film in films %}
+        <tr>
+            <td>{{ film.rating }}</td>
+            <td>{{ film.name }}</td>
+            <td>{{ film.release_date|date:"Y"}}</td>
+        </tr>
+        {% empty %}
+        <tr>No films found</tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}

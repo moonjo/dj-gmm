@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block main %}
+<nav>
+    <select id="select-actor" class="form-control">
+        {% for a in actors %}
+        <option value="{{ a.id }}">{{ a.full_name }}</option>
+        {% endfor %}
+    </select>
+</nav>
+<section>
+    <h1>{{ actor.first_name }} {{ actor.last_name }}</h1>
+    <small>{{ actor.alias }}</small>
+    <table class="table table-responsive table-striped">
+        <tr><th>Name</th><th>Genre</th><th>Rating</th><th>Year</th></tr>
+        {% for film in films %}
+        <tr>
+            <td>{{ film.name }}</td>
+            <td>{{ film.genres.all|join:', ' }}</td>
+            <td>{{ film.rating }}</td>
+            <td>{{ film.release_date|date:"Y"}}</td>
+        </tr>
+        {% empty %}
+        <tr>No films for this actor found</tr>
+        {% endfor %}
+    </table>
+</section>
+<script>
+$(document).ready(function() {
+    // set actor dropdown menu to current actor
+    $('#select-actor').val('{{ actor.id }}');
+
+    // actor dropdown callback
+    $(document).on('change', '#select-actor', function() {
+        window.location.assign('http://localhost:8000/movies/actor/' + $(this).val());
+    });
+});
+</script>
+{% endblock %}

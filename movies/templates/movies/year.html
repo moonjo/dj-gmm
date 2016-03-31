@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main %}
+<section>
+    <h1>Films of {{ year }}</h1>
+    <ul>
+    {% for film in films %}
+        <li>{{ film.name }}</li>
+    {% empty %}
+        <li>No films for this year</li>
+    {% endfor %}
+    </ul>
+</section>
+{% endblock %}
